@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-      <span className="font-serif">a</span>
+      <span>기본 페이지</span>
     </>
   )
 }
