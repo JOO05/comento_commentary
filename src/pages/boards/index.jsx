@@ -3,14 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
-
-const getDate = (date) => {
-  const _date = new Date(date);
-  const yyyy = _date.getFullYear();
-  const mm = _date.getMonth() + 1;
-  const dd = _date.getDate();
-  return `${yyyy}-${mm}-${dd}`;
-};
+import { getDate } from "../../commons/utils";
 
 const Page = styled.span`
   margin: 0px 10px;
@@ -24,9 +17,8 @@ export default function QNAList() {
   const [activedPage, setActivedPage] = useState(1);
   const [lastPage, setLastPage] = useState(1)
 
-  const onClickMoveToBoardDetail = (event) => {
-    navigate(`/qna/${event.currentTarget.id}`);
-    alert("이동 완료")
+  const onClickMoveToBoardDetail = (event) => () => {
+    navigate(`/qna/${event}`);
   };
   const [data, setData] = useState([])
 
@@ -69,7 +61,7 @@ export default function QNAList() {
 
   return(
       <main className="w-1200px m-100px">
-        <p>QNA List</p>    
+        <h1>QNA List</h1>    
         <div className="mt-20px border-2 border-gray-400 border-solid" />
         <section className="flex flex-row h-52px leading-52px border-b-1 border-b-gray-400 border-b-solid">
           <div className="w-1/12 text-center">No</div>
@@ -79,9 +71,9 @@ export default function QNAList() {
         </section>
 
         {data.map((el) => (
-          <section className="flex flex-row h-52px leading-52px border-b-1 border-b-gray-400 border-b-solid hover:text-blue-400" key={uuidv4()} id={el?.id}>
+          <section className="flex flex-row h-52px leading-52px border-b-1 border-b-gray-400 border-b-solid hover:text-blue-400" key={uuidv4()}>
             <div className="w-1/12 text-center">{el?.id}</div>
-            <div className="w-7/12 text-center cursor-pointer" onClick={onClickMoveToBoardDetail}>{el?.title}</div>
+            <div className="w-7/12 text-center cursor-pointer" onClick={onClickMoveToBoardDetail(el?.id)}>{el?.title}</div>
             <div className="w-2/12 text-center">{getDate(el?.createdAt)}</div>
             <div className="w-2/12 text-center">{(el?.isDone) ? "답변 완료" : "미답변"}</div>
           </section>
