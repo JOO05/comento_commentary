@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -7,5 +7,5 @@ export default function Header() {
       <Link to="/skill">개발 관련 기술 나열</Link>
       <Link to="/contact">연락처</Link>
     </header>
-  )
+  );
 }
