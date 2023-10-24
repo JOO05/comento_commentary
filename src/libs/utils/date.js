@@ -1,4 +1,3 @@
-//* /libs/utils/date.js로 변경
 export const getDate = (date) => {
   const _date = new Date(date);
   const yyyy = _date.getFullYear();
